@@ -21,7 +21,7 @@ print(art.logo)
 while not game_over:
 
     # Display placeholder
-    print("*****************************")
+    print(f"\n*************** < {has_lives_left} LIVES LEFT > ***************")
     print(" ".join(display))
 
     # Ask user to guess a letter
@@ -46,15 +46,18 @@ while not game_over:
 
     # Display info and hangman art on console
     print(" ".join(display))
-    print(f"You have {has_lives_left} lives remaining.")
     print(art.stages[has_lives_left])
 
     # Game over conditions
     if "_" not in display:
-        print("Congrats! You won.")
+        print("******************************")
+        print(f"Congrats, you guess \"{chosen_word}\". You won!")
+        print("******************************")
         game_over = True
     elif has_lives_left == 0:
+        print("******************************")
         print(f"You have run out of lives. The correct word was \"{chosen_word}\". You lose!")
+        print("******************************")
         game_over = True
 
 print("Thanks for playing!")
