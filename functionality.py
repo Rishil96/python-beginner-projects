@@ -1,5 +1,5 @@
 # This module contains the functions of each functionality available in the coffee machine
-from data import coffee_requirements, coins, coffee_costs
+from data import coffee_requirements, coins, coffee_costs, starting_resources
 
 
 # Print report
@@ -51,7 +51,7 @@ def make_coffee(coffee: str, available_resources: dict) -> None:
         available_resources[resource] -= coffee_requirements[coffee][resource]
     # Add the paid amount to the machine
     available_resources["money"] += coffee_costs[coffee]
-    print(f"Here is your delicious {coffee}. Please enjoy☕!")
+    print(f"\nHere is your delicious {coffee}. Please enjoy☕!\n")
 
 
 # Process coffee: all steps that goes into getting coffee
@@ -69,3 +69,12 @@ def process_coffee(coffee: str, available_resources: dict) -> None:
     else:
         print("Apologies for the inconvenience, we will stock up the ingredients soon.")
         print("Please come back later.")
+
+
+# Restock ingredients
+def restock_ingredients(available_resources: dict) -> None:
+    # Restock each ingredient
+    for ingredient in available_resources:
+        available_resources[ingredient] += starting_resources[ingredient]
+        print(f"{ingredient.title()} added in the machine.")
+    print("Restock successful!")

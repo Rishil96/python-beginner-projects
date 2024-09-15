@@ -1,12 +1,12 @@
 # Coffee Machine
 import art
 import data
-from functionality import print_report, process_coffee
+from functionality import print_report, process_coffee, restock_ingredients
 
 
 def start_coffee_machine():
     # Load up resources in the machine
-    available_resources = data.starting_resources
+    available_resources = data.starting_resources.copy()
 
     # Start coffee machine
     is_on = True
@@ -30,6 +30,10 @@ def start_coffee_machine():
         # Make Espresso, Latte, Cappuccino
         elif user_input in ["espresso", "latte", "cappuccino"]:
             process_coffee(user_input, available_resources)
+
+        # Restock ingredients
+        elif user_input == "restock":
+            restock_ingredients(available_resources)
 
         # Turn off machine
         elif user_input == "off":
