@@ -32,3 +32,10 @@ coffee_requirements = {
         "milk": 100
     }
 }
+
+# Coffee prices
+coffee_costs = {
+    "espresso": 1.50,
+    "latte": 2.50,
+    "cappuccino": 3.00
+}
