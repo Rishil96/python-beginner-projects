@@ -1,16 +1,17 @@
 # Machine start ingredients
-ingredients = {
+starting_resources = {
     "water": 300,
     "milk": 200,
-    "coffee": 100
+    "coffee": 100,
+    "money": 0
 }
 
-# Coin conversation in cents
+# Coin conversation in dollars
 coins = {
-    "penny": 1,
-    "nickel": 5,
-    "dime": 10,
-    "quarter": 25
+    "penny": 0.01,
+    "nickel": 0.05,
+    "dime": 0.1,
+    "quarter": 0.25
 }
 
 # Coffee requirements
