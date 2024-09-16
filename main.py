@@ -4,52 +4,64 @@ from coffee_maker import CoffeeMaker
 from menu import Menu
 from money_machine import MoneyMachine
 
-coffee_machine = CoffeeMaker()
-coffee_menu = Menu()
-money_bank = MoneyMachine()
 
+def start_coffee_machine():
 
-is_on = True
+    coffee_machine = CoffeeMaker()
+    coffee_menu = Menu()
+    money_bank = MoneyMachine()
 
-print("Starting the PyCafe Coffee machine...")
-print(logo)
+    is_on = True
 
-while is_on:
-    # Get user input
-    user_input = input(f"\nWhat would you like to have ({coffee_menu.get_items()}): ").lower()
+    print("Starting the PyCafe Coffee machine...")
+    print(logo)
 
-    # Print report
-    if user_input == "report":
-        print("***** REPORT *****")
-        coffee_machine.report()
-        money_bank.report()
-        print("******************")
+    while is_on:
+        # Get user input
+        user_input = input(f"\nWhat would you like to have ({coffee_menu.get_items()}): ").lower()
 
-    # Make coffee
-    elif user_input in coffee_menu.get_items().split("/"):
-        drink = coffee_menu.find_drink(user_input)
-        print(f"{user_input} will cost {money_bank.CURRENCY}{drink.cost}.")
-        if coffee_machine.is_resource_sufficient(drink):
-            if money_bank.make_payment(drink.cost):
-                coffee_machine.make_coffee(drink)
+        # Print report
+        if user_input == "report":
+            print("***** REPORT *****")
+            coffee_machine.report()
+            money_bank.report()
+            print("******************")
+
+        # Make coffee
+        elif user_input in coffee_menu.get_items().split("/"):
+            drink = coffee_menu.find_drink(user_input)
+            print(f"{user_input} will cost {money_bank.CURRENCY}{drink.cost}.")
+            if coffee_machine.is_resource_sufficient(drink):
+                if money_bank.make_payment(drink.cost):
+                    coffee_machine.make_coffee(drink)
+                else:
+                    print("Please try again with sufficient coins.")
             else:
-                print("Please try again with sufficient coins.")
+                print("Apologies for the inconvenience, we will stock up the resources soon.")
+                print("Please come again later.")
+
+        # Restock resources
+        elif user_input == "restock":
+            water = int(input("What is the water quantity to restock in ml: "))
+            milk = int(input("What is the milk quantity to restock in ml: "))
+            coffee = int(input("What is the coffee quantity to restock in grams: "))
+            coffee_machine.restock(water, milk, coffee)
+
+        # Turn off the machine
+        elif user_input == "off":
+            is_on = False
+            print("Shutting down PyCafe machine...")
+            print("Coffee is life. Please come again!")
+
         else:
-            print("Apologies for the inconvenience, we will stock up the resources soon.")
-            print("Please come again later.")
+            print("Sorry, we couldn't understand your request. Please try again.")
 
-    # Restock resources
-    elif user_input == "restock":
-        water = int(input("What is the water quantity to restock in ml: "))
-        milk = int(input("What is the milk quantity to restock in ml: "))
-        coffee = int(input("What is the coffee quantity to restock in grams: "))
-        coffee_machine.restock(water, milk, coffee)
-
-    # Turn off the machine
-    elif user_input == "off":
-        is_on = False
-        print("Shutting down PyCafe machine...")
-        print("Coffee is life. Please come again!")
-
+    restart = input("\nDo you want to restart the machine? Type 'y' or 'n': ")
+    if restart == 'y':
+        start_coffee_machine()
     else:
-        print("Sorry, we couldn't understand your request. Please try again.")
+        print("Thanks for being a valued customer at PyCafe. We will reopen soon!")
+
+
+if __name__ == "__main__":
+    start_coffee_machine()
