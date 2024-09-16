@@ -1,5 +1,6 @@
 from menu import MenuItem
 
+
 # Class that handles the making of Coffee
 class CoffeeMaker:
     """

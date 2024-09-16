@@ -26,9 +26,25 @@ while is_on:
         print("******************")
 
     # Make coffee
+    elif user_input in coffee_menu.get_items().split("/"):
+        drink = coffee_menu.find_drink(user_input)
+        print(f"{user_input} will cost {money_bank.CURRENCY}{drink.cost}.")
+        if coffee_machine.is_resource_sufficient(drink):
+            if money_bank.make_payment(drink.cost):
+                coffee_machine.make_coffee(drink)
+            else:
+                print("Please try again with sufficient coins.")
+        else:
+            print("Apologies for the inconvenience, we will stock up the resources soon.")
+            print("Please come again later.")
+
     # Restock resources
+
     # Turn off the machine
     elif user_input == "off":
         is_on = False
         print("Shutting down PyCafe machine...")
         print("Coffee is life. Please come again!")
+
+    else:
+        print("Sorry, we couldn't understand your request. Please try again.")
