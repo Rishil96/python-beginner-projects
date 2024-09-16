@@ -39,6 +39,11 @@ while is_on:
             print("Please come again later.")
 
     # Restock resources
+    elif user_input == "restock":
+        water = int(input("What is the water quantity to restock in ml: "))
+        milk = int(input("What is the milk quantity to restock in ml: "))
+        coffee = int(input("What is the coffee quantity to restock in grams: "))
+        coffee_machine.restock(water, milk, coffee)
 
     # Turn off the machine
     elif user_input == "off":

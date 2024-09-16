@@ -40,3 +40,11 @@ class CoffeeMaker:
             self.resources[ingredient] -= order.ingredients[ingredient]
 
         print(f"Here is your {order.name} ☕️. Enjoy!")
+
+    def restock(self, water, milk, coffee) -> None:
+        """
+            Get the amount of resources to be restocked
+        """
+        self.resources["water"] += water
+        self.resources["milk"] += milk
+        self.resources["coffee"] += coffee
