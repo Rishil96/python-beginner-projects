@@ -27,7 +27,7 @@ class QuizBrain:
             print("That was incorrect!")
 
         print(f"The correct answer is {question.answer}.")
-        print(f"Your current score is {self.score}/{self.question_number}.")
+        print(f"Your current score is {self.score}/{self.question_number}.\n")
 
     def still_has_questions(self) -> bool:
         """
