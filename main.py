@@ -30,8 +30,8 @@ def start_coffee_machine():
         # Make coffee
         elif user_input in coffee_menu.get_items().split("/"):
             drink = coffee_menu.find_drink(user_input)
-            print(f"{user_input} will cost {money_bank.CURRENCY}{drink.cost}.")
             if coffee_machine.is_resource_sufficient(drink):
+                print(f"{user_input} will cost {money_bank.CURRENCY}{drink.cost}.")
                 if money_bank.make_payment(drink.cost):
                     coffee_machine.make_coffee(drink)
                 else:
